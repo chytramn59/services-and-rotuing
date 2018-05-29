@@ -1,0 +1,54 @@
+
+User Input => {{uerInput}} 
+<div class="outer-container container">
+  <div class="row">
+    <div class="col-sm-4 well">
+      <form (ngSubmit)="onSubmit(formRef)" #formRef="ngForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+          type="name"
+          class="form-control"
+          [ngClass]="(name.touched && name.invalid) ? 'err-border' : ''"
+          name="name"
+          required
+          [(ngModel)]="userName" #name="ngModel">
+          <p *ngIf="(name.touched && name.invalid)" class="red">Name is required</p>
+        </div>
+
+        <div class="form-group">
+          <label for="language">Language</label>
+          <input
+          type="text"
+          class="form-control"
+          name="language"
+          required
+          [ngClass]="(lang.touched && lang.invalid) ? 'err-border' : ''"
+          [(ngModel)]="language" #lang="ngModel">
+          <p *ngIf="(lang.touched && lang.invalid)" class="red">Language is required</p>
+        </div>
+        <div class="pull-right">
+          <button type="submit" class="btn btn-primary" [disabled]="formRef.invalid">Submit</button>
+          <button type="reset" class="btn btn-warning">Reset</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-8">
+      <table class="table table-responsive table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>lang</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let value of values">
+            <td>{{value.name}}</td>
+            <td>{{value.language}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
